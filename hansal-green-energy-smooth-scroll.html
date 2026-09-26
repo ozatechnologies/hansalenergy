@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hansal Green Energy — Powering a Sustainable Future</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F6F3EA;
+    --bg-soft:#EFEBE0;
+    --panel:#FFFFFF;
+    --ink:#16301F;
+    --ink-2:#25412E;
+    --muted:#6E7364;
+    --line: rgba(22,48,31,.14);
+    --accent:#3E7A4C;
+    --accent-soft:#DCE7D6;
+    --cream:#FBF9F3;
+    --shadow: 0 20px 50px -25px rgba(20,40,25,.35);
+    --radius-lg: 28px;
+    --radius-md: 18px;
+    --radius-sm: 12px;
+    --font-head: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-body: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+    color-scheme: light;
+  }
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark){
+      --bg:#10160F;
+      --bg-soft:#161D14;
+      --panel:#1B231A;
+      --ink:#EFEEE6;
+      --ink-2:#D8DDD1;
+      --muted:#9AA192;
+      --line: rgba(239,238,230,.14);
+      --accent:#79C288;
+      --accent-soft:#233428;
+      --cream:#1B231A;
+      --shadow: 0 20px 60px -25px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#10160F;
+    --bg-soft:#161D14;
+    --panel:#1B231A;
+    --ink:#EFEEE6;
+    --ink-2:#D8DDD1;
+    --muted:#9AA192;
+    --line: rgba(239,238,230,.14);
+    --accent:#79C288;
+    --accent-soft:#233428;
+    --cream:#1B231A;
+    --shadow: 0 20px 60px -25px rgba(0,0,0,.6);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; scroll-padding-top: calc(90px + env(safe-area-inset-top,0px));}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+    padding-top: env(safe-area-inset-top,0px);
+    padding-bottom: env(safe-area-inset-bottom,0px);
+    overflow-x:hidden;
+  }
+  img,svg{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit; cursor:pointer;}
+
+  .wrap{max-width:1320px; margin:0 auto; padding:0 32px;}
+  @media (max-width:640px){ .wrap{padding:0 18px;} }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    padding-top: env(safe-area-inset-top,0px);
+    background: color-mix(in srgb, var(--bg) 86%, transparent);
+    backdrop-filter: blur(14px);
+    border-bottom:1px solid transparent;
+    transition: border-color .3s ease, background .3s ease;
+  }
+  header.scrolled{ border-color:var(--line); }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 0;
+  }
+  .logo{display:flex; flex-direction:column; line-height:1; gap:4px;}
+  .logo .mark{font-family:var(--font-head); font-weight:800; font-size:19px; letter-spacing:.06em; color:var(--ink);}
+  .logo .sub{font-size:9px; letter-spacing:.22em; color:var(--muted); font-weight:600;}
+  .nav-links{display:flex; gap:34px; list-style:none; margin:0; padding:0;}
+  .nav-links a{
+    font-size:14.5px; font-weight:600; color:var(--ink-2); position:relative; padding:4px 0;
+  }
+  .nav-links a::after{
+    content:""; position:absolute; left:0; bottom:-2px; width:0; height:2px; background:var(--accent);
+    transition:width .25s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    font-weight:700; font-size:14px; letter-spacing:.01em;
+    padding:13px 22px; border-radius:999px; border:none;
+    transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease, background .25s ease;
+  }
+  .btn-dark{ background:var(--ink); color:var(--cream); }
+  .btn-dark:hover{ transform:translateY(-2px); box-shadow:0 14px 26px -12px rgba(22,48,31,.55); }
+  .btn-light{ background:var(--cream); color:var(--ink); }
+  .btn-light:hover{ transform:translateY(-2px); box-shadow:0 14px 26px -12px rgba(0,0,0,.25); }
+  .btn .arrow-circ{
+    width:22px; height:22px; border-radius:50%; background:rgba(255,255,255,.16);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    transition: transform .25s ease;
+  }
+  .btn-light .arrow-circ{ background:rgba(22,48,31,.1); }
+  .btn:hover .arrow-circ{ transform:translateX(3px); }
+  .menu-toggle{ display:none; background:none; border:none; padding:8px; }
+  .menu-toggle span{ display:block; width:22px; height:2px; background:var(--ink); margin:5px 0; border-radius:2px; }
+
+  @media (max-width:920px){
+    .nav-links{ display:none; }
+    .menu-toggle{ display:block; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero-section{ padding:14px 0 90px; }
+  .hero-card{
+    position:relative; border-radius:var(--radius-lg); overflow:hidden;
+    min-height:560px; isolation:isolate;
+  }
+  .hero-scene{ position:absolute; left:0; right:0; top:-14%; height:128%; z-index:0; will-change:transform; }
+  .hero-scene img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .hero-scrim{
+    position:absolute; inset:0; z-index:1; pointer-events:none;
+    background: linear-gradient(100deg, rgba(251,249,243,.82) 0%, rgba(251,249,243,.55) 32%, rgba(251,249,243,.08) 56%, rgba(20,30,18,0) 72%);
+  }
+  :root[data-theme="dark"] .hero-scrim, :root:not([data-theme="light"]) .hero-scrim{
+    @media (prefers-color-scheme: dark){
+      background: linear-gradient(100deg, rgba(12,17,10,.82) 0%, rgba(12,17,10,.55) 32%, rgba(12,17,10,.1) 56%, rgba(12,17,10,0) 72%);
+    }
+  }
+  .scene img, .about-card .scene img, .video-card .scene img, .solutions-img .scene img, .cta-banner .scene img{
+    width:100%; height:100%; object-fit:cover; display:block;
+  }
+  .hero-content{
+    position:relative; z-index:2; padding:56px 48px 64px;
+    display:flex; flex-direction:column; height:100%; min-height:560px;
+    max-width:640px;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:12px; font-weight:700; letter-spacing:.14em; color:#F3F0E4;
+    opacity:.92; margin-bottom:22px;
+  }
+  .eyebrow .dash{ width:22px; height:2px; background:currentColor; border-radius:2px; }
+  .hero-content h1{
+    font-family:var(--font-head); font-weight:800;
+    font-size:clamp(34px, 4.6vw, 54px); line-height:1.08; letter-spacing:-.01em;
+    color:#0F2417; margin:0 0 20px;
+    max-width:520px;
+  }
+  .hero-content p{
+    font-size:15.5px; line-height:1.65; color:#2C3A2C; max-width:400px; margin:0 0 32px;
+  }
+  .hero-cta{ margin-top:auto; }
+  .hero-nav-dots{
+    position:absolute; left:48px; bottom:36px; z-index:3;
+    display:flex; gap:10px;
+  }
+  .hero-nav-dots button{
+    width:38px; height:38px; border-radius:50%; border:1px solid rgba(255,255,255,.5);
+    background:rgba(255,255,255,.12); color:#fff; display:flex; align-items:center; justify-content:center;
+    backdrop-filter:blur(6px); transition:background .2s ease, transform .2s ease;
+  }
+  .hero-nav-dots button:hover{ background:rgba(255,255,255,.28); transform:translateY(-2px); }
+  .hero-nav-dots button.active{ background:var(--ink); border-color:var(--ink); }
+
+  .hero-float-card{
+    position:absolute; right:44px; bottom:40px; z-index:3;
+    background:var(--cream); border-radius:16px; padding:12px 18px 12px 12px;
+    display:flex; align-items:center; gap:12px;
+    box-shadow: var(--shadow);
+    animation: floaty 5s ease-in-out infinite;
+  }
+  @keyframes floaty{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-8px);} }
+  .hero-float-card .ic{
+    width:38px; height:38px; border-radius:10px; background:var(--accent-soft);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .hero-float-card .txt{ font-size:13px; font-weight:700; line-height:1.3; color:var(--ink); }
+  .hero-float-card .go{
+    width:28px; height:28px; border-radius:50%; background:var(--ink); flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; margin-left:6px;
+  }
+
+  @media (max-width:720px){
+    .hero-content{ padding:40px 24px 90px; }
+    .hero-float-card{ left:24px; right:24px; bottom:96px; }
+    .hero-nav-dots{ left:24px; bottom:36px; }
+  }
+
+  /* ---------- SECTION LABELS ---------- */
+  .eyebrow-row{ display:flex; align-items:center; gap:10px; font-size:12px; font-weight:700; letter-spacing:.14em; color:var(--muted); margin-bottom:16px;}
+  .eyebrow-row .num{ color:var(--ink); }
+  .eyebrow-row .rule{ flex:0 0 30px; height:1px; background:var(--line); }
+
+  /* ---------- ABOUT ---------- */
+  .about{ padding:70px 0 100px; }
+  .about-grid{
+    display:grid; grid-template-columns: .95fr 1.35fr; gap:48px; align-items:start;
+  }
+  .about-copy p.lead{ font-size:15px; line-height:1.7; color:var(--muted); max-width:340px; margin:0 0 40px;}
+  .about-copy .tag{ font-size:13px; font-weight:700; color:var(--accent); margin-bottom:10px; }
+  .about-copy h2{
+    font-family:var(--font-head); font-weight:800; font-size:clamp(28px,3vw,36px);
+    line-height:1.18; margin:0 0 28px; color:var(--ink);
+  }
+  .about-cards{ display:flex; gap:20px; }
+  .about-card{
+    position:relative; flex:1; border-radius:var(--radius-md); overflow:hidden;
+    aspect-ratio: 3/4; isolation:isolate;
+  }
+  .about-card .scene{ position:absolute; left:0; right:0; top:-18%; height:136%; z-index:0; will-change:transform; }
+  .about-card:hover .scene{ filter:brightness(1.05); }
+  .about-card .overlay{
+    position:absolute; inset:0; z-index:1;
+    background: linear-gradient(180deg, rgba(10,20,12,.05) 30%, rgba(8,18,10,.72) 100%);
+  }
+  .about-card .content{ position:relative; z-index:2; height:100%; display:flex; flex-direction:column; justify-content:space-between; padding:22px; }
+  .about-card h3{ font-family:var(--font-head); color:#fff; font-size:19px; margin:0 0 6px; }
+  .about-card p{ color:rgba(255,255,255,.82); font-size:12.5px; line-height:1.5; margin:0; }
+  .learn-more{
+    display:inline-flex; align-items:center; gap:8px; font-size:12.5px; font-weight:700;
+    color:#fff; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.4);
+    padding:8px 14px 8px 8px; border-radius:999px; width:fit-content; backdrop-filter:blur(4px);
+    transition: background .2s ease;
+  }
+  .learn-more:hover{ background:rgba(255,255,255,.3); }
+  .learn-more .dot{ width:22px; height:22px; border-radius:50%; background:#fff; color:var(--ink); display:flex; align-items:center; justify-content:center; }
+
+  .about-carousel-dots{ display:flex; justify-content:flex-end; gap:10px; margin-top:16px; }
+  .about-carousel-dots button{ width:32px; height:32px; border-radius:50%; border:1px solid var(--line); background:var(--panel); display:flex; align-items:center; justify-content:center; color:var(--muted); transition:.2s ease; }
+  .about-carousel-dots button.active{ background:var(--ink); color:var(--cream); border-color:var(--ink); }
+
+  @media (max-width:880px){
+    .about-grid{ grid-template-columns:1fr; }
+    .about-cards{ margin-top:8px; }
+  }
+  @media (max-width:560px){
+    .about-cards{ flex-direction:column; }
+    .about-card{ aspect-ratio: 16/10; }
+  }
+
+  /* ---------- MISSION ---------- */
+  .mission-wrap{ padding: 0 0 100px; }
+  .mission-panel{
+    background:var(--bg-soft); border-radius:var(--radius-lg); padding:64px 40px 48px;
+  }
+  .mission-panel .eyebrow-row{ justify-content:center; }
+  .mission-quote{
+    text-align:center; max-width:760px; margin:0 auto 46px;
+    font-family:var(--font-head); font-weight:600; font-size:clamp(20px,2.6vw,30px);
+    line-height:1.5; color:var(--muted);
+  }
+  .mission-quote b{ font-weight:700; }
+  .mission-quote .word{ color:var(--muted); opacity:.35; transition: color .35s ease, opacity .35s ease; }
+  .mission-quote .word.on{ color:var(--ink); opacity:1; }
+  .mission-quote b .word{ color:var(--muted); }
+  .mission-quote b .word.on{ color:var(--accent); }
+  .mission-media-row{ display:grid; grid-template-columns: 1.7fr 1fr; gap:22px; }
+  .video-card{
+    position:relative; border-radius:var(--radius-md); overflow:hidden; aspect-ratio: 16/9; isolation:isolate;
+  }
+  .video-card .scene{ position:absolute; left:0; right:0; top:-16%; height:132%; z-index:0; will-change:transform; }
+  .video-card .shade{ position:absolute; inset:0; z-index:1; background:linear-gradient(180deg, rgba(8,15,10,0) 40%, rgba(8,15,10,.65) 100%); }
+  .video-card .caption{ position:absolute; left:22px; bottom:20px; z-index:2; color:#fff; font-size:13px; font-weight:700; }
+  .play-btn{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:2;
+    width:74px; height:74px; border-radius:50%; background:rgba(255,255,255,.92);
+    display:flex; align-items:center; justify-content:center; border:none;
+  }
+  .play-btn::before, .play-btn::after{
+    content:""; position:absolute; inset:0; border-radius:50%; border:1.5px solid rgba(255,255,255,.7);
+    animation: pulse-ring 2.6s ease-out infinite;
+  }
+  .play-btn::after{ animation-delay:1.3s; }
+  @keyframes pulse-ring{ 0%{ transform:scale(1); opacity:.9;} 100%{ transform:scale(1.9); opacity:0;} }
+
+  .vision-card{
+    background:var(--panel); border-radius:var(--radius-md); padding:26px 24px;
+    display:flex; flex-direction:column; position:relative; overflow:hidden;
+    border:1px solid var(--line);
+  }
+  .vision-card .eyebrow-row{ margin-bottom:14px; }
+  .vision-card h4{
+    font-family:var(--font-head); font-size:20px; line-height:1.35; font-weight:700;
+    color:var(--ink); margin:0 0 auto; max-width:200px;
+  }
+  .vision-foot{ display:flex; align-items:flex-end; justify-content:space-between; margin-top:22px; }
+  .circ-btn{
+    width:42px; height:42px; border-radius:50%; background:var(--ink); color:var(--cream);
+    display:flex; align-items:center; justify-content:center; border:none; flex-shrink:0;
+    transition: transform .25s ease, background .25s ease;
+  }
+  .circ-btn:hover{ transform:translateY(-2px) rotate(8deg); background:var(--accent); }
+  .leaf-mini{ width:52px; height:52px; border-radius:14px; object-fit:cover; }
+
+  @media (max-width:820px){ .mission-media-row{ grid-template-columns:1fr; } .mission-panel{ padding:44px 22px 32px; } }
+
+  /* ---------- STATS ---------- */
+  .stats{ padding:0 0 100px; }
+  .stats-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+  .stat-card{
+    background:var(--bg-soft); border-radius:var(--radius-md); padding:26px 22px;
+    border:1px solid transparent; transition: border-color .25s ease, transform .25s ease;
+  }
+  .stat-card:hover{ border-color:var(--line); transform:translateY(-3px); }
+  .stat-card .ic{ width:26px; height:26px; color:var(--accent); margin-bottom:18px; }
+  .stat-card .num{ font-family:var(--font-head); font-weight:800; font-size:32px; color:var(--ink); }
+  .stat-card .lbl{ font-size:12.5px; color:var(--muted); margin-top:4px; }
+  @media (max-width:760px){ .stats-grid{ grid-template-columns:repeat(2,1fr); } }
+
+  /* ---------- SOLUTIONS ---------- */
+  .solutions{ padding:0 0 100px; }
+  .solutions-panel{
+    background:var(--bg-soft); border-radius:var(--radius-lg); padding:48px;
+    display:grid; grid-template-columns: .85fr 1.15fr; gap:40px; align-items:center;
+  }
+  .solutions-copy h2{
+    font-family:var(--font-head); font-weight:800; font-size:clamp(24px,2.8vw,32px);
+    line-height:1.28; margin:16px 0 26px; color:var(--ink); max-width:380px;
+  }
+  .text-link{ display:inline-flex; align-items:center; gap:12px; font-weight:700; font-size:14.5px; color:var(--ink); }
+  .solutions-img{ position:relative; border-radius:var(--radius-md); overflow:hidden; aspect-ratio:16/10; isolation:isolate; }
+  .solutions-img .scene{ position:absolute; left:0; right:0; top:-18%; height:136%; z-index:0; will-change:transform; }
+  @media (max-width:860px){ .solutions-panel{ grid-template-columns:1fr; padding:32px 22px; } }
+
+  /* ---------- CTA BANNER ---------- */
+  .cta-wrap{ padding:0 0 90px; }
+  .cta-banner{
+    position:relative; border-radius:var(--radius-lg); overflow:hidden; isolation:isolate;
+    min-height:320px; display:flex; align-items:center; justify-content:center; text-align:center;
+  }
+  .cta-banner .scene{ position:absolute; left:0; right:0; top:-18%; height:136%; z-index:0; will-change:transform; }
+  .cta-banner .shade{ position:absolute; inset:0; z-index:1; background:linear-gradient(180deg, rgba(6,12,8,.35), rgba(6,12,8,.62)); }
+  .cta-inner{ position:relative; z-index:2; padding:20px; }
+  .cta-inner h2{
+    font-family:var(--font-head); color:#fff; font-weight:800;
+    font-size:clamp(26px,4vw,42px); line-height:1.2; margin:0 0 30px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{ padding:36px 0 44px; border-top:1px solid var(--line); }
+  .foot-row{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
+  .foot-note{ font-size:12.5px; color:var(--muted); }
+
+  /* ---------- REVEAL ---------- */
+  .reveal{ opacity:0; transform:translateY(22px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+    .reveal{ opacity:1; transform:none; }
+  }
+
+/* ---------- EDITORIAL SCROLL EXPERIENCE ---------- */
+:root { --page-gutter: clamp(22px, 6vw, 104px); }
+html { scroll-snap-type: y proximity; scroll-padding-top: 88px; }
+.wrap { max-width: 1600px; padding-left: var(--page-gutter); padding-right: var(--page-gutter); }
+.hero-section, .about, .mission-wrap, .stats, .solutions, .cta-wrap {
+  scroll-snap-align: start;
+}
+.hero-section { padding-top: clamp(18px, 3vh, 36px); padding-bottom: clamp(54px, 9vh, 110px); }
+.hero-card { min-height: min(76vh, 820px); border-radius: 4px; }
+.hero-content { min-height: min(76vh, 820px); max-width: 880px; padding: clamp(46px, 7vw, 104px); }
+.hero-content h1 {
+  font-size: clamp(3.4rem, 8.2vw, 8.8rem);
+  line-height: .94; letter-spacing: -.075em; max-width: 900px;
+  text-wrap: balance;
+}
+.hero-content p { font-size: clamp(1rem, 1.25vw, 1.25rem); max-width: 460px; }
+.eyebrow, .eyebrow-row { letter-spacing: .19em; }
+.about { padding-top: clamp(70px, 12vh, 150px); padding-bottom: clamp(80px, 13vh, 160px); }
+.about-grid { gap: clamp(40px, 7vw, 120px); }
+.about-copy h2, .solutions-copy h2 {
+  font-size: clamp(2.8rem, 5.6vw, 6.2rem); line-height: .98;
+  letter-spacing: -.065em; max-width: 760px; text-wrap: balance;
+}
+.about-copy p.lead { font-size: clamp(1rem, 1.25vw, 1.2rem); max-width: 430px; }
+.about-card { border-radius: 3px; }
+.mission-wrap { padding-bottom: clamp(70px, 12vh, 150px); }
+.mission-panel { border-radius: 4px; padding: clamp(50px, 8vw, 120px) clamp(24px, 7vw, 100px); }
+.mission-quote { max-width: 1200px; font-size: clamp(2rem, 5.2vw, 5.6rem); line-height: 1.12; letter-spacing: -.055em; }
+.stats { padding-bottom: clamp(70px, 12vh, 150px); }
+.stats-grid { gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.stat-card { border-radius: 0; padding: clamp(24px, 3.5vw, 54px); }
+.stat-card .num { font-size: clamp(2.5rem, 5vw, 5.5rem); letter-spacing: -.07em; line-height: 1; }
+.stat-card .lbl { font-size: 13px; margin-top: 12px; }
+.solutions { padding-bottom: clamp(70px, 12vh, 150px); }
+.solutions-panel { border-radius: 4px; padding: clamp(30px, 6vw, 90px); gap: clamp(30px, 6vw, 90px); }
+.solutions-copy h2 { font-size: clamp(2.5rem, 5vw, 5.4rem); }
+.solutions-img { border-radius: 3px; }
+.cta-wrap { padding-bottom: clamp(60px, 10vh, 120px); }
+.cta-banner { min-height: min(68vh, 700px); border-radius: 4px; }
+.cta-inner h2 { font-size: clamp(3.2rem, 8vw, 8rem); line-height: .92; letter-spacing: -.075em; }
+.reveal { opacity: 0; transform: translate3d(0, 56px, 0); clip-path: inset(0 0 8% 0); transition: opacity .9s ease, transform 1s cubic-bezier(.16,1,.3,1), clip-path 1s cubic-bezier(.16,1,.3,1); }
+.reveal.in { opacity: 1; transform: translate3d(0,0,0); clip-path: inset(0); }
+.hero-content h1 .word { display:inline-block; overflow:hidden; vertical-align:top; }
+.hero-content h1 .word > span { display:inline-block; transform:translateY(115%); opacity:0; transition:transform .9s cubic-bezier(.16,1,.3,1), opacity .6s ease; }
+.hero-card.in .hero-content h1 .word > span { transform:translateY(0); opacity:1; }
+.hero-content h1 .word:nth-child(2) > span { transition-delay:.08s; }
+.hero-content h1 .word:nth-child(3) > span { transition-delay:.16s; }
+.hero-content h1 .word:nth-child(4) > span { transition-delay:.24s; }
+.hero-content h1 .word:nth-child(5) > span { transition-delay:.32s; }
+.hero-content h1 .word:nth-child(6) > span { transition-delay:.4s; }
+.hero-content h1 .word:nth-child(7) > span { transition-delay:.48s; }
+.hero-content h1 .word:nth-child(8) > span { transition-delay:.56s; }
+.hero-content h1 .word:nth-child(9) > span { transition-delay:.64s; }
+.hero-content h1 .word:nth-child(10) > span { transition-delay:.72s; }
+@media (max-width: 720px) {
+  html { scroll-snap-type: y proximity; }
+  .hero-card, .hero-content { min-height: 78svh; }
+  .hero-content { padding: 42px 26px 104px; }
+  .hero-content h1 { font-size: clamp(3.25rem, 13vw, 5.4rem); }
+  .hero-float-card { left: 26px; right: 26px; bottom: 94px; }
+  .hero-nav-dots { left: 26px; bottom: 34px; }
+  .about-cards { gap: 12px; }
+  .about-copy h2, .solutions-copy h2 { font-size: clamp(2.7rem, 11vw, 4.5rem); }
+  .mission-quote { font-size: clamp(2rem, 9vw, 3.4rem); }
+  .stats-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .stat-card { padding: 24px 18px; }
+  .cta-banner { min-height: 62svh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-snap-type: none; }
+  .hero-content h1 .word > span { transform:none; opacity:1; }
+}
+
+
+  /* Scroll-based solution cards */
+  .solutions{padding:0 0 clamp(70px,12vh,150px);}
+  .solutions-intro{max-width:900px;margin:0 auto clamp(38px,7vh,80px);text-align:center;}
+  .solutions-intro h2{font-family:var(--font-head);font-size:clamp(2.4rem,5vw,5rem);line-height:1.03;letter-spacing:-.055em;margin:18px 0 18px;}
+  .solutions-intro p{font-size:clamp(15px,1.3vw,18px);line-height:1.7;color:var(--muted);margin:0;}
+  .solution-stack{position:relative;display:grid;gap:28px;}
+  .solution-card{position:sticky;top:112px;min-height:clamp(430px,66vh,650px);display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(28px,6vw,86px);align-items:center;padding:clamp(24px,4vw,58px);border:1px solid var(--line);border-radius:var(--radius-lg);background:var(--panel);box-shadow:var(--shadow);overflow:hidden;transform-origin:center top;}
+  .solution-card:nth-child(2){top:128px;}
+  .solution-card:nth-child(3){top:144px;}
+  .solution-card-image{height:100%;min-height:340px;position:relative;overflow:hidden;border-radius:var(--radius-md);background:var(--bg-soft);}
+  .solution-card-image img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;transition:transform 1s cubic-bezier(.2,.7,.2,1);}
+  .solution-card:hover .solution-card-image img{transform:scale(1.045);}
+  .solution-index{position:absolute;left:18px;top:18px;padding:9px 12px;border-radius:99px;background:rgba(255,255,255,.88);color:#16301F;font-size:11px;font-weight:800;letter-spacing:.12em;}
+  .solution-card-copy{max-width:470px;padding:18px 0;}
+  .solution-kicker{font-size:11px;letter-spacing:.18em;font-weight:800;color:var(--accent);}
+  .solution-card-copy h3{font-family:var(--font-head);font-size:clamp(2.1rem,4vw,4.3rem);line-height:1.02;letter-spacing:-.055em;margin:22px 0;}
+  .solution-card-copy p{font-size:clamp(15px,1.2vw,18px);line-height:1.75;color:var(--muted);max-width:390px;margin:0 0 28px;}
+  @media(max-width:760px){
+    .solutions-intro{text-align:left;margin-bottom:30px;}
+    .solution-stack{gap:18px;}
+    .solution-card,.solution-card:nth-child(2),.solution-card:nth-child(3){top:86px;min-height:0;grid-template-columns:1fr;gap:20px;padding:18px;border-radius:22px;}
+    .solution-card:nth-child(2){top:96px;}
+    .solution-card:nth-child(3){top:106px;}
+    .solution-card-image{min-height:260px;height:34vh;}
+    .solution-card-copy{padding:8px 4px 12px;}
+    .solution-card-copy h3{font-size:clamp(2.2rem,10vw,3.4rem);margin:14px 0;}
+  }
+  @media(prefers-reduced-motion:reduce){.solution-card-image img{transition:none;}}
+
+
+  /* Smooth, deliberate scrolling */
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="wrap nav">
+    <div class="logo">
+      <span class="mark">HANSAL</span>
+      <span class="sub">GREEN ENERGY</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#solutions">Solutions</a></li>
+      <li><a href="#impact">Impact</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="btn btn-dark">Partner With Us <span class="arrow-circ">
+      <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H3.5M10 2V8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span></a>
+    <button class="menu-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero-section wrap" id="home">
+    <div class="hero-card reveal" id="heroCard">
+      <div class="hero-scene" id="heroScene"><img src="https://images.pexels.com/photos/371917/pexels-photo-371917.jpeg?auto=compress&w=1600&h=1000&dpr=1" alt="Solar panels reflecting a sunset sky"></div>
+      <div class="hero-scrim"></div>
+      <div class="hero-content">
+        <div class="eyebrow"><span class="dash"></span> CLEAN ENERGY. A BRIGHTER TOMORROW.</div>
+        <h1>Powering a sustainable future with clean, green energy solutions.</h1>
+        <p>Hansal Green Energy delivers innovative renewable energy solutions for a cleaner planet and a stronger tomorrow.</p>
+        <div class="hero-cta">
+          <a href="#solutions" class="btn btn-dark">Explore Our Solutions <span class="arrow-circ">
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H3.5M10 2V8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span></a>
+        </div>
+      </div>
+      <div class="hero-nav-dots">
+        <button aria-label="Previous"><svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M7.5 2L3 6l4.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="active" aria-label="Pause"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><rect x="2" y="1.5" width="2.4" height="9" rx="1" fill="currentColor"/><rect x="7.6" y="1.5" width="2.4" height="9" rx="1" fill="currentColor"/></svg></button>
+        <button aria-label="Next"><svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M4.5 2L9 6l-4.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+      <div class="hero-float-card">
+        <div class="ic">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2c0 6-5 7-5 12a5 5 0 0 0 10 0c0-5-5-6-5-12Z" stroke="#3E7A4C" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="txt">Sustainable<br>Energy Solutions</div>
+        <div class="go">
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H3.5M10 2V8.5" stroke="#FBF9F3" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about wrap" id="about">
+    <div class="about-grid">
+      <div class="about-copy reveal">
+        <div class="eyebrow-row"><span class="num">01</span><span class="rule"></span><span>ABOUT HANSAL</span></div>
+        <p class="lead">We are a forward-looking renewable energy company, committed to delivering clean, efficient and reliable energy solutions for a sustainable future.</p>
+        <div class="tag">/ About Us</div>
+        <h2>Clean Energy for a Greener Tomorrow</h2>
+        <a href="#impact" class="btn btn-dark">Our Journey <span class="arrow-circ">
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H3.5M10 2V8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span></a>
+      </div>
+      <div class="reveal">
+        <div class="about-cards">
+          <div class="about-card">
+            <div class="scene" id="solarScene"><img src="https://images.pexels.com/photos/356036/pexels-photo-356036.jpeg?auto=compress&w=900&h=1100&dpr=1" alt="Solar panels under a bright sky"></div>
+            <div class="overlay"></div>
+            <div class="content">
+              <div>
+                <h3>Solar Energy</h3>
+                <p>Harnessing the sun's power for a cleaner tomorrow.</p>
+              </div>
+              <a href="#solutions" class="learn-more">Learn More <span class="dot">
+                <svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H3.5M10 2V8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span></a>
+            </div>
+          </div>
+          <div class="about-card">
+            <div class="scene" id="windScene"><img src="https://images.pexels.com/photos/414837/pexels-photo-414837.jpeg?auto=compress&cs=tinysrgb&w=900&h=1100&dpr=1" alt="Wind turbine amid rolling hills at sunset"></div>
+            <div class="overlay"></div>
+            <div class="content">
+              <div>
+                <h3>Wind Energy</h3>
+                <p>Clean power. Lasting impact.</p>
+              </div>
+              <a href="#solutions" class="learn-more">Learn More <span class="dot">
+                <svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H3.5M10 2V8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span></a>
+            </div>
+          </div>
+        </div>
+        <div class="about-carousel-dots">
+          <button aria-label="Previous"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M7.5 2L3 6l4.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="active" aria-label="Next"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 2L9 6l-4.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section class="mission-wrap wrap">
+    <div class="mission-panel reveal">
+      <div class="eyebrow-row"><span>OUR MISSION</span></div>
+      <p class="mission-quote" id="missionQuote"><span class="word">To</span> <span class="word">accelerate</span> <span class="word">the</span> <span class="word">transition</span> <span class="word">to</span> <b><span class="word">clean</span> <span class="word">energy</span></b> <span class="word">by</span> <span class="word">delivering</span> <span class="word">reliable,</span> <span class="word">innovative</span> <span class="word">and</span> <b><span class="word">sustainable</span></b> <span class="word">solutions</span> <span class="word">for</span> <span class="word">a</span> <span class="word">better</span> <span class="word">tomorrow.</span></p>
+      <div class="mission-media-row">
+        <div class="video-card">
+          <div class="scene" id="videoScene"><img src="https://images.pexels.com/photos/3619870/pexels-photo-3619870.jpeg?auto=compress&w=1300&h=800&dpr=1" alt="Wind turbines across a green landscape"></div>
+          <div class="shade"></div>
+          <button class="play-btn" aria-label="Play video">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M6 4.5v11l9-5.5-9-5.5Z" fill="#16301F"/></svg>
+          </button>
+          <div class="caption">Clean Energy. Real Impact.</div>
+        </div>
+        <div class="vision-card">
+          <div class="eyebrow-row"><span>OUR VISION</span></div>
+          <h4>A cleaner, greener planet for future generations.</h4>
+          <div class="vision-foot">
+            <button class="circ-btn" aria-label="Explore vision">
+              <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H3.5M10 2V8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <img class="leaf-mini" src="https://images.pexels.com/photos/30119144/pexels-photo-30119144/free-photo-of-young-green-plant-in-small-pot-for-indoor-gardening.jpeg?auto=compress&w=200&h=200&dpr=1" alt="A small green plant in a pot">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats wrap">
+    <div class="stats-grid reveal">
+      <div class="stat-card">
+        <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M12 2c0 6-5 7-5 12a5 5 0 0 0 10 0c0-5-5-6-5-12Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <div class="num" data-count="12" data-suffix="+">0</div>
+        <div class="lbl">Years of Experience</div>
+      </div>
+      <div class="stat-card">
+        <svg class="ic" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="11" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M8 19h8M12 15v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <div class="num" data-count="500" data-suffix="+">0</div>
+        <div class="lbl">MW Renewable Projects</div>
+      </div>
+      <div class="stat-card">
+        <svg class="ic" viewBox="0 0 24 24" fill="none"><circle cx="8" cy="9" r="3" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="10" r="2.3" stroke="currentColor" stroke-width="1.6"/><path d="M2.5 20c.6-3.8 3-6 5.5-6s4.9 2.2 5.5 6M14.5 20c.4-2.6 1.9-5 4-5 1.9 0 3.5 1.6 4 4.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <div class="num" data-count="100" data-suffix="+">0</div>
+        <div class="lbl">Happy Clients</div>
+      </div>
+      <div class="stat-card">
+        <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M12 2c0 6-5 7-5 12a5 5 0 0 0 10 0c0-5-5-6-5-12Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <div class="num" data-count="1" data-suffix="M+">0</div>
+        <div class="lbl">Tons CO&#8322; Reduced</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTIONS: scroll-led card sequence -->
+  <section class="solutions wrap" id="solutions">
+    <div class="solutions-intro reveal">
+      <div class="eyebrow-row"><span>OUR SOLUTIONS</span></div>
+      <h2>Integrated renewable energy solutions for industries, businesses and communities.</h2>
+      <p>Designed around cleaner power, dependable performance and long-term value.</p>
+    </div>
+    <div class="solution-stack">
+      <article class="solution-card reveal">
+        <div class="solution-card-image">
+          <img src="https://images.pexels.com/photos/9875441/pexels-photo-9875441.jpeg?auto=compress&w=1400&h=1000&dpr=1" alt="Solar panels in a renewable energy installation">
+          <span class="solution-index">01 / 03</span>
+        </div>
+        <div class="solution-card-copy">
+          <span class="solution-kicker">CLEAN POWER</span>
+          <h3>Renewable energy<br>for a changing world.</h3>
+          <p>Bringing clean energy into focus with solutions built to support a more sustainable future.</p>
+          <a href="#contact" class="text-link"><span class="circ-btn"><svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H3.5M10 2V8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Explore possibilities</a>
+        </div>
+      </article>
+      <article class="solution-card reveal">
+        <div class="solution-card-image">
+          <img src="https://images.pexels.com/photos/356036/pexels-photo-356036.jpeg?auto=compress&w=1400&h=1000&dpr=1" alt="Wind turbines generating renewable energy">
+          <span class="solution-index">02 / 03</span>
+        </div>
+        <div class="solution-card-copy">
+          <span class="solution-kicker">RELIABLE ENERGY</span>
+          <h3>Powering businesses<br>with purpose.</h3>
+          <p>Energy solutions shaped around the needs of businesses, industries and communities.</p>
+          <a href="#contact" class="text-link"><span class="circ-btn"><svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H3.5M10 2V8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Explore possibilities</a>
+        </div>
+      </article>
+      <article class="solution-card reveal">
+        <div class="solution-card-image">
+          <img src="https://images.pexels.com/photos/1108572/pexels-photo-1108572.jpeg?auto=compress&w=1400&h=1000&dpr=1" alt="Green landscape representing a sustainable future">
+          <span class="solution-index">03 / 03</span>
+        </div>
+        <div class="solution-card-copy">
+          <span class="solution-kicker">LONG-TERM IMPACT</span>
+          <h3>Progress that lasts<br>beyond today.</h3>
+          <p>Supporting a cleaner tomorrow through a commitment to efficient and sustainable energy.</p>
+          <a href="#contact" class="text-link"><span class="circ-btn"><svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H3.5M10 2V8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Partner with us</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-wrap wrap" id="impact">
+    <div class="cta-banner reveal">
+      <div class="scene" id="ctaScene"><img src="https://images.pexels.com/photos/35182282/pexels-photo-35182282/free-photo-of-enchanting-forest-canopy-in-bali-indonesia.jpeg?auto=compress&w=1600&h=900&dpr=1" alt="Lush green forest canopy from above"></div>
+      <div class="shade"></div>
+      <div class="cta-inner">
+        <h2>Building a cleaner,<br>greener future</h2>
+        <a href="#contact" class="btn btn-light">Partner With Us <span class="arrow-circ">
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H3.5M10 2V8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap foot-row">
+    <div class="logo">
+      <span class="mark">HANSAL</span>
+      <span class="sub">GREEN ENERGY</span>
+    </div>
+    <div class="foot-note">Clean Energy &nbsp;/&nbsp; Sustainable Tomorrow</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+
+  /* Split hero headline into animated words for a deliberate editorial entrance. */
+  var heroHeading = document.querySelector('.hero-content h1');
+  if (heroHeading && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var words = heroHeading.textContent.trim().split(/\s+/);
+    heroHeading.innerHTML = words.map(function(word) {
+      return '<span class="word"><span>' + word.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</span></span> ';
+    }).join('');
+  }
+
+  /* ---------- header scroll state ---------- */
+  var header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', function(){
+    header.classList.toggle('scrolled', window.scrollY > 12);
+  }, {passive:true});
+
+  /* ---------- reveal on scroll ---------- */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, {threshold:.15});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  /* hero entrance on load */
+  window.addEventListener('load', function(){
+    requestAnimationFrame(function(){ document.getElementById('heroCard').classList.add('in'); });
+  });
+
+  /* ---------- animated counters ---------- */
+  function animateCount(el){
+    var target = parseFloat(el.getAttribute('data-count'));
+    var suffix = el.getAttribute('data-suffix') || '';
+    var dur = 1400, start = null;
+    function step(ts){
+      if(!start) start = ts;
+      var p = Math.min(1, (ts-start)/dur);
+      var eased = 1 - Math.pow(1-p, 3);
+      var val = Math.round(target * eased);
+      el.textContent = val + suffix;
+      if(p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var statIo = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ animateCount(en.target); statIo.unobserve(en.target); }
+    });
+  }, {threshold:.6});
+  document.querySelectorAll('.num[data-count]').forEach(function(el){ statIo.observe(el); });
+
+  /* ---------- about card toggle dots (purely cosmetic swap) ---------- */
+  var aboutDots = document.querySelectorAll('.about-carousel-dots button');
+  aboutDots.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      aboutDots.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+    });
+  });
+
+  /* ---------- mobile menu ---------- */
+  var toggle = document.querySelector('.menu-toggle');
+  var links = document.querySelector('.nav-links');
+  toggle.addEventListener('click', function(){
+    var open = links.style.display === 'flex';
+    if(open){
+      links.style.display = 'none';
+    } else {
+      links.style.cssText = 'display:flex; position:absolute; top:100%; left:0; right:0; flex-direction:column; background:var(--bg); padding:18px 24px; gap:18px; border-bottom:1px solid var(--line);';
+    }
+  });
+
+  /* ---------- SCROLL PARALLAX SYSTEM ---------- */
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var heroCard = document.getElementById('heroCard');
+  var heroScene = document.getElementById('heroScene');
+  var heroContentEl = document.querySelector('.hero-content');
+  var mouseX = 0, mouseY = 0;
+
+  var parallaxTargets = [
+    { el: heroScene,                                    speed: .22, mouse: true  },
+    { el: document.getElementById('solarScene'),        speed: .14, mouse: false },
+    { el: document.getElementById('windScene'),         speed: .14, mouse: false },
+    { el: document.getElementById('videoScene'),        speed: .16, mouse: false },
+    { el: document.getElementById('solutionsScene'),    speed: .14, mouse: false },
+    { el: document.getElementById('ctaScene'),          speed: .18, mouse: false }
+  ].filter(function(t){ return !!t.el; });
+
+  var vh = window.innerHeight;
+  var missionQuote = document.getElementById('missionQuote');
+  var missionWords = missionQuote ? missionQuote.querySelectorAll('.word') : [];
+
+  function updateMissionReveal(){
+    if(!missionQuote || !missionWords.length) return;
+    var r = missionQuote.getBoundingClientRect();
+    if(r.bottom < -100 || r.top > vh + 100) return;
+    // progress: 0 when quote top enters bottom of viewport, 1 when quote bottom passes 40% up the viewport
+    var start = vh * .92;
+    var end = vh * .38;
+    var raw = (start - r.top) / (start - end + r.height);
+    var progress = Math.min(1, Math.max(0, raw));
+    var revealCount = Math.round(progress * missionWords.length);
+    missionWords.forEach(function(w, i){ w.classList.toggle('on', i < revealCount); });
+  }
+
+  function updateParallax(){
+    vh = window.innerHeight;
+    parallaxTargets.forEach(function(t){
+      var container = t.el.parentElement;
+      var r = container.getBoundingClientRect();
+      if(r.bottom < -200 || r.top > vh + 200) return; // skip offscreen work
+      var centerDelta = (r.top + r.height/2) - vh/2;
+      var y = centerDelta * -t.speed * .18;
+      var extra = '';
+      if(t.mouse){ extra = ' translateX(' + (mouseX*10) + 'px)'; y += mouseY*6; }
+      t.el.style.transform = 'translateY(' + y.toFixed(1) + 'px)' + extra;
+    });
+
+    // hero content depth: gentle upward drift + fade as the hero scrolls away
+    if(heroContentEl && heroCard){
+      var hr = heroCard.getBoundingClientRect();
+      var progress = Math.min(1, Math.max(0, -hr.top / (hr.height * .9)));
+      heroContentEl.style.transform = 'translateY(' + (progress*36) + 'px)';
+      heroContentEl.style.opacity = String(1 - progress*.85);
+    }
+
+    updateMissionReveal();
+  }
+
+  var ticking = false;
+  function onScrollOrResize(){
+    if(!reduceMotion && !ticking){
+      ticking = true;
+      requestAnimationFrame(function(){ updateParallax(); ticking = false; });
+    }
+  }
+  if(reduceMotion){
+    missionWords.forEach(function(w){ w.classList.add('on'); });
+  }
+  if(!reduceMotion){
+    window.addEventListener('scroll', onScrollOrResize, {passive:true});
+    window.addEventListener('resize', onScrollOrResize);
+    updateParallax();
+
+    heroCard.addEventListener('mousemove', function(e){
+      var r = heroCard.getBoundingClientRect();
+      mouseX = (e.clientX - r.left)/r.width - .5;
+      mouseY = (e.clientY - r.top)/r.height - .5;
+      onScrollOrResize();
+    });
+    heroCard.addEventListener('mouseleave', function(){
+      mouseX = 0; mouseY = 0;
+      onScrollOrResize();
+    });
+  }
+})();
+</script>
+
+<script>
+/* Slow, eased wheel scrolling for a calm, section-led experience.
+   Touch and keyboard scrolling remain native; reduced-motion users opt out. */
+(() => {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (reduceMotion.matches) return;
+
+  let current = window.scrollY;
+  let target = current;
+  let frame = null;
+  let lastInput = 0;
+
+  const animate = () => {
+    const now = performance.now();
+    const elapsed = now - lastInput;
+    if (elapsed > 180) target = window.scrollY;
+    const distance = target - window.scrollY;
+    if (Math.abs(distance) < 0.7) {
+      window.scrollTo(0, target);
+      frame = null;
+      return;
+    }
+    window.scrollTo(0, window.scrollY + distance * 0.075);
+    frame = requestAnimationFrame(animate);
+  };
+
+  window.addEventListener('wheel', (event) => {
+    if (event.ctrlKey || Math.abs(event.deltaY) < Math.abs(event.deltaX)) return;
+    event.preventDefault();
+    lastInput = performance.now();
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    target = Math.max(0, Math.min(max, (frame === null ? window.scrollY : target) + event.deltaY * 0.62));
+    if (frame === null) frame = requestAnimationFrame(animate);
+  }, { passive: false });
+})();
+</script>
+\n</body>
+</html>
